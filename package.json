@@ -1,0 +1,14 @@
+{
+  "name": "challenges",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "frontend/*",
+    "backend/*"
+  ],
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
