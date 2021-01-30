@@ -82,9 +82,10 @@ const HomePage: React.FC = (props) => {
 
     useEffect(() => {
         if (localStorage.getItem('tasks') !== null) {
-            const tasks = JSON.parse(localStorage.getItem('tasks') || '')
-            setTasks(tasks)
-            setVisibleTasks(tasks)
+            const localTasks = JSON.parse(localStorage.getItem('tasks') || '')
+
+            setTasks(localTasks)
+            setVisibleTasks(localTasks)
         }
     }, [])
 
