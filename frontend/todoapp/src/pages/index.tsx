@@ -57,9 +57,7 @@ const HomePage: React.FC = (props) => {
         let allTasks = [...tasks].filter((task) => task.id !== id)
 
         setTasks(allTasks)
-        if(activeTab === 'completed') fetchCompleteTasks()
-        if(activeTab === 'active') fetchActiveTasks()
-        if(activeTab === 'all') setVisibleTasks(allTasks)
+        setVisibleTasks(allTasks.filter(task => task.checked))
     }
 
     // Function to fetch all tasks without filter
