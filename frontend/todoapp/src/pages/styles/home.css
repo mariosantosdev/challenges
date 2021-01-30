@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.title-website {
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 2rem !important;
+
+    margin: 1.4rem 0 !important;
+}
