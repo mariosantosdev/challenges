@@ -1,0 +1,11 @@
+.container-task {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.task-item {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+}
