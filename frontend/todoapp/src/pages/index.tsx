@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Container, Typography } from '@material-ui/core'
 
@@ -23,18 +23,19 @@ const HomePage: React.FC = (props) => {
     }
 
     // Function to create a new task
-    const createTask = (taskDesc: string) => {
+    const createTask = async (taskDesc: string) => {
         const id = Date.now().toString()
         const text = taskDesc
 
         const task: TasksType = { id, text, checked: false }
 
         setTasks([...tasks, task])
-        if(activeTab === 'all' || activeTab === 'active') setVisibleTasks([...tasks, task])
+        if (activeTab === 'all' || activeTab === 'active') setVisibleTasks([...tasks, task])
+        await localStorage.setItem('tasks', JSON.stringify([...tasks, task]))
     }
 
     // Function to toggle checked taks
-    const toggleTask = (id: string) => {
+    const toggleTask = async (id: string) => {
         let taskState: boolean = false
         let allTasks = [...tasks].map((task) => {
             if (task.id === id) {
@@ -54,17 +55,19 @@ const HomePage: React.FC = (props) => {
     }
 
     // Function to delete task in state
-    const deleteTask = (props: { id?: string, clean?: boolean }) => {
+    const deleteTask = async (props: { id?: string, clean?: boolean }) => {
         if (!props.clean) {
             let allTasks = [...tasks].filter((task) => task.id !== props.id)
 
             setTasks(allTasks)
             setVisibleTasks(allTasks.filter(task => task.checked))
+            await localStorage.setItem('tasks', JSON.stringify([allTasks]))
         } else {
             let justActiveTasks = [...tasks].filter(task => !task.checked)
 
             setTasks(justActiveTasks)
             setVisibleTasks([])
+            await localStorage.setItem('tasks', JSON.stringify([]))
         }
     }
 
@@ -76,6 +79,14 @@ const HomePage: React.FC = (props) => {
 
     // Function to fetch tasks with filter completed tasks
     const fetchCompleteTasks = () => setVisibleTasks(tasks.filter(task => task.checked))
+
+    useEffect(() => {
+        if (localStorage.getItem('tasks') !== null) {
+            const tasks = JSON.parse(localStorage.getItem('tasks') || '')
+            setTasks(tasks)
+            setVisibleTasks(tasks)
+        }
+    }, [])
 
     return (
         <Container className='container' maxWidth='sm'>
