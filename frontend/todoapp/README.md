@@ -64,10 +64,10 @@ Read below a story about my project:
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/hH6PbOHBdPm6otzw2De5) was to build an application to complete the given user stories.
 
 <li>You can add a new task</li>
-You can complete a task
-You can toggle between <code>All</code>, <code>Active</code> and <code>Completed</code>
-You can remove one or all tasks under the Completed tab
-You can store the data in local storage and when you refresh the page your task though save
+<li>You can complete a task</li>
+<li>You can toggle between <code>All</code>, <code>Active</code> and <code>Completed</code></li>
+<li>You can remove one or all tasks under the Completed tab</li>
+<li>You can store the data in local storage and when you refresh the page your task though save</li>
 
 ## How To Use
 
