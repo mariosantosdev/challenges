@@ -50,7 +50,7 @@ const HomePage: React.FC = (props) => {
         if (activeTab === 'completed' && !taskState) fetchCompleteTasks()
         if (activeTab === 'active' && taskState) fetchActiveTasks()
         if (activeTab === 'all') setVisibleTasks(allTasks)
-        await localStorage.setItem('tasks', JSON.stringify([allTasks]))
+        await localStorage.setItem('tasks', JSON.stringify(allTasks))
 
     }
 
