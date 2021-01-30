@@ -46,18 +46,26 @@ const HomePage: React.FC = (props) => {
         })
 
         setTasks(allTasks)
-        if(activeTab === 'completed' && !taskState) fetchCompleteTasks()
-        if(activeTab === 'active' && taskState) fetchActiveTasks()
-        if(activeTab === 'all') setVisibleTasks(allTasks)
-        
+        if (activeTab === 'completed' && !taskState) fetchCompleteTasks()
+        if (activeTab === 'active' && taskState) fetchActiveTasks()
+        if (activeTab === 'all') setVisibleTasks(allTasks)
+        await localStorage.setItem('tasks', JSON.stringify([allTasks]))
+
     }
 
     // Function to delete task in state
-    const deleteTask = (id: string) => {
-        let allTasks = [...tasks].filter((task) => task.id !== id)
+    const deleteTask = (props: { id?: string, clean?: boolean }) => {
+        if (!props.clean) {
+            let allTasks = [...tasks].filter((task) => task.id !== props.id)
 
-        setTasks(allTasks)
-        setVisibleTasks(allTasks.filter(task => task.checked))
+            setTasks(allTasks)
+            setVisibleTasks(allTasks.filter(task => task.checked))
+        } else {
+            let justActiveTasks = [...tasks].filter(task => !task.checked)
+
+            setTasks(justActiveTasks)
+            setVisibleTasks([])
+        }
     }
 
     // Function to fetch all tasks without filter
