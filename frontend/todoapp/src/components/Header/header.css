@@ -1,0 +1,14 @@
+.input-container {
+    margin: 1rem 0 !important;
+}
+
+.input {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
