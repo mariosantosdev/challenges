@@ -1,0 +1,9 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+# Folder build server
+build
+
+# Folder data of database
+data

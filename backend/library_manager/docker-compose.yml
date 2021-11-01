@@ -1,0 +1,52 @@
+version: "3.2"
+services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - library-manager-network
+
+  db-client:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PG_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_PASS}
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - library-manager-network
+
+  api:
+    image: node:12.20.2
+    container_name: api
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    command: yarn start
+    networks:
+      - library-manager-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+networks:
+  library-manager-network:
+    driver: bridge
