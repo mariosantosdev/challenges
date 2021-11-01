@@ -17,6 +17,7 @@
 ## Índice
 
 - [Devchallenge](#devchallenge)
+- [Como Usar](#como-usar)
 - [Desafio](#desafio)
   - [Requisitos:](#requisitos)
     - [Rotas da aplicação:](#rotas-da-aplicação)
@@ -26,6 +27,18 @@
 # Devchallenge
 
 <a href="https://devchallenge.now.sh/"> DevChallenge</a> permite que você evolua suas skills como programador! Participe da nossa <a href="https://discord.gg/yvYXhGj">comunidade</a> o/
+
+# Como Usar
+
+Para usar este projeto, instale em seu computador o node, npm, docker, makefile e se possível o nvm (Para não ter problema de compatibilidade).
+
+Agora iremos configurar o projeto para ser usado:
+
+1. `git clone https://github.com/mariosantosdev/challenges.git` - para clonar o repositório
+2. `cd challenges` - para entrar na pasta do repositório
+3. `npm i` _ou_ `yarn` - para instalar as dependencias
+4. `make up` - para configurar as imagens do docker
+5. `npm run start` _ou_ `yarn start` - para inicializar o servidor
 
 # Desafio
 
