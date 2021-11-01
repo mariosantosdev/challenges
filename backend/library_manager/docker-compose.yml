@@ -1,0 +1,32 @@
+version: "3.2"
+services:
+  db:
+    image: postgres
+    container_name: postgres_db
+    restart: always
+    ports:
+      - ${DB_PORT}:5432
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - library-manager-network
+
+  db-client:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PG_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_PASS}
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - library-manager-network
+
+networks:
+  library-manager-network:
+    driver: bridge
