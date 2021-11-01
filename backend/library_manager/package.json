@@ -1,0 +1,12 @@
+{
+  "name": "library_manager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^3.3.0"
+  },
+  "devDependencies": {
+    "prisma": "^3.3.0"
+  }
+}
